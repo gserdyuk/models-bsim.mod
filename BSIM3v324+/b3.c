@@ -187,6 +187,10 @@ IOP( "cle", BSIM3_MOD_CLE, IF_REAL, "Vdsat parameter for C-V model"),
 IOP( "dwc", BSIM3_MOD_DWC, IF_REAL, "Delta W for C-V model"),
 IOP( "dlc", BSIM3_MOD_DLC, IF_REAL, "Delta L for C-V model"),
 
+/*GS - mod1: adding xw/ xl*/
+IOP( "xw", BSIM3_MOD_XW, IF_REAL, "W offset for channel width due to mask/etch effect"),
+IOP( "xl", BSIM3_MOD_XL, IF_REAL, "L offset for channel length due to mask/etch effect"),
+
 IOP( "alpha0", BSIM3_MOD_ALPHA0, IF_REAL, "substrate current model parameter"),
 IOP( "alpha1", BSIM3_MOD_ALPHA1, IF_REAL, "substrate current model parameter"),
 IOP( "beta0", BSIM3_MOD_BETA0, IF_REAL, "substrate current model parameter"),

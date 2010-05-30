@@ -174,9 +174,13 @@ int Size_Not_Found;
 		      pLastKnot->pNext = pParam;
                   pParam->pNext = NULL;
                   here->pParam = pParam;
-
+/*GS -mod1: adding xw/ xl */
+/*
 		  Ldrn = here->BSIM3l;
 		  Wdrn = here->BSIM3w;
+*/
+		  Ldrn = here->BSIM3l  + model->BSIM3xl ;
+		  Wdrn = here->BSIM3w  + model->BSIM3xw;
                   pParam->Length = Ldrn;
                   pParam->Width = Wdrn;
 		  
