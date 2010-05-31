@@ -43,7 +43,7 @@ CKTcircuit *ckt;
 register BSIM3model *model = (BSIM3model*) inModel;
 register BSIM3instance *here;
 struct bsim3SizeDependParam *pSizeDependParamKnot, *pLastKnot, *pParam;
-double tmp, tmp1, tmp2, tmp3, Eg, Eg0, ni, T0, T1, T2, T3, T4, T5, Ldrn, Wdrn;
+double tmp, tmp1, tmp2, tmp3, Eg, Eg0, ni, T0, T1, T2, T3, T4, T5, Ldrn, Wdrn, /*GS-mod1*/ Lnew, Wnew;
 double delTemp, Temp, TRatio, Inv_L, Inv_W, Inv_LW, Dw, Dl, Vtm0, Tnom;
 double Nvtm, SourceSatCurrent, DrainSatCurrent;
 int Size_Not_Found;
@@ -179,8 +179,8 @@ int Size_Not_Found;
 		  Ldrn = here->BSIM3l;
 		  Wdrn = here->BSIM3w;
 */
-		  Ldrn = here->BSIM3l  + model->BSIM3xl ;
-		  Wdrn = here->BSIM3w  + model->BSIM3xw;
+		  Lnew= Ldrn = here->BSIM3l  + model->BSIM3xl ;
+		  Wnew= Wdrn = here->BSIM3w  + model->BSIM3xw;
                   pParam->Length = Ldrn;
                   pParam->Width = Wdrn;
 		  
@@ -202,7 +202,7 @@ int Size_Not_Found;
                        + model->BSIM3Wwlc / (T2 * T3);
                   pParam->BSIM3dwc = model->BSIM3dwc + tmp2;
 
-                  pParam->BSIM3leff = here->BSIM3l - 2.0 * pParam->BSIM3dl;
+                  pParam->BSIM3leff = /*here->BSIM3l*/Lnew - 2.0 * pParam->BSIM3dl;   /*GS -mod1: adding xw/ xl */
                   if (pParam->BSIM3leff <= 0.0)
 	          {   IFuid namarray[2];
                       namarray[0] = model->BSIM3modName;
@@ -213,7 +213,7 @@ int Size_Not_Found;
                       return(E_BADPARM);
                   }
 
-                  pParam->BSIM3weff = here->BSIM3w - 2.0 * pParam->BSIM3dw;
+                  pParam->BSIM3weff = /*here->BSIM3w*/Wnew - 2.0 * pParam->BSIM3dw;     /*GS -mod1: adding xw/ xl */
                   if (pParam->BSIM3weff <= 0.0)
 	          {   IFuid namarray[2];
                       namarray[0] = model->BSIM3modName;
@@ -224,7 +224,7 @@ int Size_Not_Found;
                       return(E_BADPARM);
                   }
 
-                  pParam->BSIM3leffCV = here->BSIM3l - 2.0 * pParam->BSIM3dlc;
+                  pParam->BSIM3leffCV = /*here->BSIM3l*/Lnew - 2.0 * pParam->BSIM3dlc;     /*GS -mod1: adding xw/ xl */
                   if (pParam->BSIM3leffCV <= 0.0)
 	          {   IFuid namarray[2];
                       namarray[0] = model->BSIM3modName;
@@ -235,7 +235,7 @@ int Size_Not_Found;
                       return(E_BADPARM);
                   }
 
-                  pParam->BSIM3weffCV = here->BSIM3w - 2.0 * pParam->BSIM3dwc;
+                  pParam->BSIM3weffCV = /*here->BSIM3w*/Wnew - 2.0 * pParam->BSIM3dwc;      /*GS -mod1: adding xw/ xl */
                   if (pParam->BSIM3weffCV <= 0.0)
 	          {   IFuid namarray[2];
                       namarray[0] = model->BSIM3modName;
