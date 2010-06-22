@@ -442,6 +442,9 @@ typedef struct sBSIM3model
 /*GS - mod1: adding xw/xl */
     double BSIM3xw;
     double BSIM3xl;
+/*GS - mod2: adding rd/rs */
+    double BSIM3rd;
+    double BSIM3rs;
 
     double BSIM3noff;
     double BSIM3voffcv;
@@ -890,6 +893,9 @@ typedef struct sBSIM3model
 /*GS - mod1 : added XW/XL */
     unsigned  BSIM3xwGiven    :1;
     unsigned  BSIM3xlGiven    :1;
+/*GS - mod2 : added RD/RS */
+    unsigned  BSIM3rdGiven    :1;
+    unsigned  BSIM3rsGiven    :1;
 
     unsigned  BSIM3noffGiven  :1;
     unsigned  BSIM3voffcvGiven :1;
@@ -1691,6 +1697,9 @@ typedef struct sBSIM3model
 /*GS - mod1 : adding XW/XL */
 #define BSIM3_MOD_XL               1867
 #define BSIM3_MOD_XW               1868
+/*GS - mod2 : adding RD/RS */
+#define BSIM3_MOD_RD               1869
+#define BSIM3_MOD_RS               1870
 
 #define BSIM3_MOD_EM               687
 #define BSIM3_MOD_EF               688

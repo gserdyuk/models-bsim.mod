@@ -109,6 +109,10 @@ IOP( "delta", BSIM3_MOD_DELTA, IF_REAL, "Effective Vds parameter"),
 IOP( "rsh", BSIM3_MOD_RSH, IF_REAL, "Source-drain sheet resistance"),
 IOP( "rdsw", BSIM3_MOD_RDSW, IF_REAL, "Source-drain resistance per width"),    
 
+/*GS - mod2: adding RD/RS*/
+IOP( "rd", BSIM3_MOD_RD, IF_REAL, "Drain resistance"),
+IOP( "rs", BSIM3_MOD_RS, IF_REAL, "Source resistance"),
+
 IOP( "prwg", BSIM3_MOD_PRWG, IF_REAL, "Gate-bias effect on parasitic resistance "),    
 IOP( "prwb", BSIM3_MOD_PRWB, IF_REAL, "Body-effect on parasitic resistance "),    
 

@@ -403,6 +403,16 @@ GENmodel *inMod;
             mod->BSIM3xl = value->rValue;
             mod->BSIM3xlGiven = TRUE;
             break;           
+
+ /*GS:- mod2: adding rd/rs*/
+         case  BSIM3_MOD_RD :
+            mod->BSIM3rd = value->rValue;
+            mod->BSIM3rdGiven = TRUE;
+            break;
+        case  BSIM3_MOD_RS :
+            mod->BSIM3rs = value->rValue;
+            mod->BSIM3rsGiven = TRUE;
+            break;           
             
         case  BSIM3_MOD_VFBCV :
             mod->BSIM3vfbcv = value->rValue;

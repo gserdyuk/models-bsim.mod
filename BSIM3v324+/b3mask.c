@@ -308,6 +308,13 @@ IFvalue *value;
         case BSIM3_MOD_XL:
             value->rValue = model->BSIM3xl;
             return(OK);
+ /* GS - mod2: adding RD/RS  */
+        case BSIM3_MOD_RD:
+            value->rValue = model->BSIM3rd;
+            return(OK);
+        case BSIM3_MOD_RS:
+            value->rValue = model->BSIM3rs;
+            return(OK);
 
         case BSIM3_MOD_VFBCV:
             value->rValue = model->BSIM3vfbcv; 

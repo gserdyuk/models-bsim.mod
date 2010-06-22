@@ -776,6 +776,11 @@ double tmp1, tmp2;
            model->BSIM3xl = 0.0;
         if (!model->BSIM3xwGiven)  
            model->BSIM3xw = 0.0;
+/*GS - mod2: adding rd/rs*/
+        if (!model->BSIM3rdGiven)  
+           model->BSIM3rd = 0.0;
+        if (!model->BSIM3rsGiven)  
+           model->BSIM3rs = 0.0;
            
 	if (!model->BSIM3cfGiven)
             model->BSIM3cf = 2.0 * EPSOX / PI
@@ -890,24 +895,44 @@ double tmp1, tmp2;
                 here->BSIM3nqsMod = 0;
                     
             /* process drain series resistance */
-            if ((model->BSIM3sheetResistance > 0.0) && 
-                (here->BSIM3drainSquares > 0.0 ) &&
+            /*
+            fprintf(stdout,"b3set, drain, BSIM3rd               = %e\n", model->BSIM3rd);
+            fprintf(stdout,"b3set, drain, BSIM3sheetResistance  = %e\n", model->BSIM3sheetResistance);
+            fprintf(stdout,"b3set, drain, BSIM3drainSquares     = %e\n", here->BSIM3drainSquares);
+            fprintf(stdout,"b3set, drain, BSIM3dNodePrime       = %e\n", here->BSIM3dNodePrime);
+            */
+            if (                                                    
+                (  !(model->BSIM3rd == 0.0 && model->BSIM3rdGiven) &&     /* NOT (rd==0 && rd_Given ) &&   */
+                (model->BSIM3sheetResistance > 0.0) &&                    /*     rsh>0                &&   */
+                (here->BSIM3drainSquares > 0.0 )                          /*     drainSqares>0             */
+                ||                                                        /*  OR                           */
+                     model->BSIM3rd > 0.0  && model->BSIM3rdGiven         /*     rd>0   && rd_Given        */
+                )
+                &&
                 (here->BSIM3dNodePrime == 0))
 	    {   error = CKTmkVolt(ckt,&tmp,here->BSIM3name,"drain");
                 if(error) return(error);
                 here->BSIM3dNodePrime = tmp->number;
+            /*fprintf(stdout,"b3set, drain, dNodePrime = tmp->number\n");/**/
             }
-	    else
+	    else                                                        
 	    {   here->BSIM3dNodePrime = here->BSIM3dNode;
             }
                    
             /* process source series resistance */
-            if ((model->BSIM3sheetResistance > 0.0) && 
-                (here->BSIM3sourceSquares > 0.0 ) &&
+            if (
+                (  !(model->BSIM3rs == 0.0 && model->BSIM3rsGiven) &&  
+                (model->BSIM3sheetResistance > 0.0) && 
+                (here->BSIM3sourceSquares > 0.0 ) 
+                ||
+                     model->BSIM3rs > 0.0 && model->BSIM3rsGiven
+                ) 
+                &&
                 (here->BSIM3sNodePrime == 0)) 
 	    {   error = CKTmkVolt(ckt,&tmp,here->BSIM3name,"source");
                 if(error) return(error);
                 here->BSIM3sNodePrime = tmp->number;
+            /*fprintf(stdout,"b3set, source, sNodePrime = tmp->number\n");/**/
             }
 	    else 
 	    {   here->BSIM3sNodePrime = here->BSIM3sNode;

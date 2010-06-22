@@ -21,10 +21,24 @@ b4mpar.c:            mod->BSIM4xlGiven = TRUE;
 b4set.c:        if (!model->BSIM4xlGiven)  
 b4set.c:           model->BSIM4xl = 0.0;
 
-g) calculate (use parameter)
++g) calculate (use parameter)
 b4temp.c:                  Lnew = here->BSIM4l  + model->BSIM4xl ;
 
 +h) definitions - value and "given"
 bsim4def.h:    double BSIM4xl;
 bsim4def.h:    unsigned  BSIM4xlGiven    :1;
 
+
+1) implemented xl/xw
+2) have to implement RD / RS
+    h+
+    f+
+    a+
+    b - no need
+    c+
+    d+
+    g+
+3) implemented RD / RS
+    - b3temp.c
+    - b3set.c  - drain and source series resistances
+    - remove prints yet
