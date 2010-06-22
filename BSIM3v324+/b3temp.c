@@ -823,7 +823,6 @@ int Size_Not_Found;
 					       / here->BSIM3sourceConductance;
 	      else
                   here->BSIM3sourceConductance = 0.0;
-                
 	      here->BSIM3cgso = pParam->BSIM3cgso;
 	      here->BSIM3cgdo = pParam->BSIM3cgdo;
 
