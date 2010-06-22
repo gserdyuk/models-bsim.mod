@@ -135,8 +135,6 @@ struct bsim3SizeDependParam *pParam;
 int ByPass, Check, ChargeComputationNeeded, J, error, I;
 double junk[50];
 
-/*fprintf(stdout,"b3ld entered \n");/**/
-
 ScalingFactor = 1.0e-9;
 ChargeComputationNeeded =  
                  ((ckt->CKTmode & (MODEAC | MODETRAN | MODEINITSMSIG)) ||
@@ -1178,10 +1176,6 @@ for (; model != NULL; model = model->BSIM3nextModel)
           here->BSIM3gbds = Gbd;
 
           here->BSIM3csub = Isub;
-          
-          /*
-          fprintf(stdout," Ids =%e, Gds =%e, Gm =%e, Gmb =%e, Gbb =%e, Gbg =%e, Gbd =%e, Isub =%e \n",Ids, Gds, Gm, Gmb, Gbb, Gbg, Gbd, Isub);
-          /**/
 
           /* BSIM3 thermal noise Qinv calculated from all capMod 
            * 0, 1, 2 & 3 stored in here->BSIM3qinv 1/1998 */
@@ -2793,7 +2787,6 @@ line860:
            *  load current vector
            */
 line900:
-        /*fprintf(stdout,"b3ld load current verctor \n");/**/
 
           if (here->BSIM3mode >= 0)
 	  {   Gm = here->BSIM3gm;
@@ -2882,11 +2875,6 @@ line900:
             */
 
 	   T1 = qdef * here->BSIM3gtau;
-        /*
-        fprintf(stdout,"b3ld load y matrix \n");
-        fprintf(stdout,"b3ld here->BSIM3drainConductance = %e \n",here->BSIM3drainConductance);
-        fprintf(stdout,"b3ld here->BSIM3sourceConductance = %e \n",here->BSIM3sourceConductance);
-        /**/
            (*(here->BSIM3DdPtr) += here->BSIM3drainConductance);
            (*(here->BSIM3GgPtr) += gcggb - ggtg);
            (*(here->BSIM3SsPtr) += here->BSIM3sourceConductance);

@@ -800,14 +800,10 @@ int Size_Not_Found;
               }
 
               /* process source/drain series resistance */  /*GS: mod2 - RD/RS implementation*/
-              /*
-              fprintf(stdout,"b3temp pre  here->BSIM3sourceConductance = %e \n",here->BSIM3sourceConductance);
-              /**/
-              /**/
+              /* GS: mod2 - adding RD/RS */
               if (model->BSIM3rdGiven)
                 here->BSIM3drainConductance=model->BSIM3rd;
               else
-              /**/
                 here->BSIM3drainConductance = model->BSIM3sheetResistance 
 		                              * here->BSIM3drainSquares;
               if (here->BSIM3drainConductance > 0.0)
@@ -816,35 +812,17 @@ int Size_Not_Found;
 	      else
                   here->BSIM3drainConductance = 0.0;
               
-              /*
-              fprintf(stdout,"b3temp pre  here->BSIM3sourceConductance = %e \n",here->BSIM3sourceConductance);
-              /**/
-              /**/
+              /*GS: mod2 - adding RD/RS */
               if (model->BSIM3rsGiven)
                 here->BSIM3sourceConductance=model->BSIM3rs;
               else
-              /**/    
-                here->BSIM3sourceConductance = model->BSIM3sheetResistance 
+                here->BSIM3sourceConductance = model->BSIM3sheetResistance
 		                           * here->BSIM3sourceSquares;
               if (here->BSIM3sourceConductance > 0.0) 
                   here->BSIM3sourceConductance = 1.0
 					       / here->BSIM3sourceConductance;
 	      else
                   here->BSIM3sourceConductance = 0.0;
-
-              /*
-              
-              fprintf(stdout,"b3temp post here->BSIM3drainConductance = %e \n",here->BSIM3drainConductance);              
-              fprintf(stdout,"b3temp      model->BSIM3sheetResistance = %e \n",model->BSIM3sheetResistance);
-              fprintf(stdout,"b3temp      here->BSIM3drainSquares = %e \n",here->BSIM3drainSquares);
-              
-              fprintf(stdout,"b3temp post here->BSIM3sourceConductance = %e \n",here->BSIM3sourceConductance);
-              fprintf(stdout,"b3temp      model->BSIM3sheetResistance = %e \n",model->BSIM3sheetResistance);
-              fprintf(stdout,"b3temp      here->BSIM3sourceSquares = %e \n",here->BSIM3sourceSquares);
-              
-                
-             /**/
-                
                 
 	      here->BSIM3cgso = pParam->BSIM3cgso;
 	      here->BSIM3cgdo = pParam->BSIM3cgdo;

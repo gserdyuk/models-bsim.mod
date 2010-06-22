@@ -895,12 +895,6 @@ double tmp1, tmp2;
                 here->BSIM3nqsMod = 0;
                     
             /* process drain series resistance */
-            /*
-            fprintf(stdout,"b3set, drain, BSIM3rd               = %e\n", model->BSIM3rd);
-            fprintf(stdout,"b3set, drain, BSIM3sheetResistance  = %e\n", model->BSIM3sheetResistance);
-            fprintf(stdout,"b3set, drain, BSIM3drainSquares     = %e\n", here->BSIM3drainSquares);
-            fprintf(stdout,"b3set, drain, BSIM3dNodePrime       = %e\n", here->BSIM3dNodePrime);
-            */
             if (                                                    
                 (  !(model->BSIM3rd == 0.0 && model->BSIM3rdGiven) &&     /* NOT (rd==0 && rd_Given ) &&   */
                 (model->BSIM3sheetResistance > 0.0) &&                    /*     rsh>0                &&   */
@@ -913,9 +907,8 @@ double tmp1, tmp2;
 	    {   error = CKTmkVolt(ckt,&tmp,here->BSIM3name,"drain");
                 if(error) return(error);
                 here->BSIM3dNodePrime = tmp->number;
-            /*fprintf(stdout,"b3set, drain, dNodePrime = tmp->number\n");/**/
             }
-	    else                                                        
+	    else
 	    {   here->BSIM3dNodePrime = here->BSIM3dNode;
             }
                    
@@ -932,7 +925,6 @@ double tmp1, tmp2;
 	    {   error = CKTmkVolt(ckt,&tmp,here->BSIM3name,"source");
                 if(error) return(error);
                 here->BSIM3sNodePrime = tmp->number;
-            /*fprintf(stdout,"b3set, source, sNodePrime = tmp->number\n");/**/
             }
 	    else 
 	    {   here->BSIM3sNodePrime = here->BSIM3sNode;
