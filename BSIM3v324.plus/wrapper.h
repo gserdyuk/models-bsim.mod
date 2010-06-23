@@ -1,5 +1,5 @@
 extern "C" {
-  #include "bsim2def.h"
+  #include "bsim3def.h"
   #define DEV_bsim3
   #include "bsim3itf.h"
 }

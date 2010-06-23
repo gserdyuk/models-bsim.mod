@@ -1,5 +1,5 @@
 
-TARGET = bsim324+
+TARGET = bsim324.plus
 $(TARGET):
 
 include makedefs
