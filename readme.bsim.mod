@@ -1,6 +1,32 @@
+MODELS-BSIM.MOD README 
+
+I. Intro 
+--------
 Ths directory contains BSIM models which were modified in that or another way.
 
-I. BSIM3v324.plus
+II. Installation
+----------------
+1) put models-bsim.mod directory below gnucap
+gnucap
+    src
+    ...
+    models-bsim (optional)
+    models-bsim.mod
+or make a link
+    
+2) >cd models-bsim.mod
+
+3) create a link to gnucap sources (need to compile library)
+   >ln -s ../src Gnucap 
+
+4) make 
+   >make
+
+libraries (*.so) will be created in subdirectories
+
+
+II. BSIM3v324.plus
+------------------
 THis model lacks some industry-standard parameters, Adding those parameters will improve model usability
 
 1) Add XL / XW
